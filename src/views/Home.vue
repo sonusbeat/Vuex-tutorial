@@ -1,18 +1,47 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <figure>
+      <img alt="Vue logo" src="../assets/logo.png">
+    </figure>
+
+    <h2>
+      <span class="darkGreen">{{ title }}:</span>&nbsp;
+      <span :class="counterColor">$ {{ counter }}</span>
+    </h2>
+
+    <div><BtnIncrease />&nbsp;<BtnDecrease /></div><br>
+
+    <hr>
+    <div>
+      <ButtonAction :state="true" :number="100" />&nbsp;
+      <ButtonAction :state="false" :number="100" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapState } from "vuex";
+import BtnIncrease from "@/components/BtnIncrease";
+import BtnDecrease from "@/components/BtnDecrease";
+import ButtonAction from "@/components/ButtonAction";
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    BtnIncrease,
+    BtnDecrease,
+    ButtonAction
+  },
+  data() {
+    return {
+      title: "Contador Vuex"
+    };
+  },
+  computed: {
+    ...mapState(['counter']),
+    counterColor() {
+      return this.counter >= 500 ? 'green' : 'red';
+    }
   }
 }
 </script>

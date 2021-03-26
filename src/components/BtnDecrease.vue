@@ -1,0 +1,14 @@
+<template>
+  <button @click="decreaseAction(200)">Disminuir</button>
+</template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  name: "BtnDecrease",
+  methods: {
+    ...mapActions(['decreaseAction'])
+  }
+}
+</script>
